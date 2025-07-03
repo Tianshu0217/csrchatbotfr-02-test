@@ -54,9 +54,11 @@ function App() {
   
     try {
       // 2. 发送请求到后端，只包含历史对话
-      const res = await fetch("http://localhost:5001/chat", {
+      const API = process.env.REACT_APP_API_URL;
+
+      const res = await fetch(`${API}/chat`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {"Content-Type":"application/json"},
         body: JSON.stringify({ messages: newChat })
       });
       console.log(">> HTTP", res.status, res.statusText);
